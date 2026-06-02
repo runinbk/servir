@@ -21,114 +21,21 @@ export default function Home() {
   const [loadingPage, setLoadingPage] = useState<boolean>(true);
   const [isFading, setIsFading] = useState<boolean>(false);
 
-  // Preloader suave de 1.0s + 0.8s de desvanecimiento (fade-out)
+  // Preloader suave con 5 segundos de espera y 0.8s de desvanecimiento (fade-out)
   useEffect(() => {
+    // Inicia el desvanecimiento de opacidad exactamente a los 5 segundos (5000ms)
     const fadeTimer = setTimeout(() => {
       setIsFading(true);
-    }, 1000);
+    }, 5000);
 
+    // Se desmonta físicamente a los 5.8 segundos (5800ms)
     const unmountTimer = setTimeout(() => {
       setLoadingPage(false);
-    }, 1800);
+    }, 5800);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(unmountTimer);
-    };
-  }, []);
-
-  // Interceptor de scroll ultra-suave y lento de 1.4s para transiciones fluidas en escritorio
-  useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth < 1024) return;
-
-    const sections = ["hero", "estadisticas-impacto", "sobre-nosotros", "publico", "nuestra-red", "cursos", "contacto"];
-    let isAnimating = false;
-
-    // Función de interpolación con atenuación cúbica para máxima sedosidad (Cubic easeInOut)
-    const smoothScrollTo = (targetY: number, duration: number, callback?: () => void) => {
-      const startY = window.pageYOffset || window.scrollY;
-      const difference = targetY - startY;
-      let start: number | null = null;
-
-      function step(timestamp: number) {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        const percent = Math.min(progress / duration, 1);
-        
-        // Easing cúbico suavizado en los extremos (InOut)
-        const ease = percent < 0.5 
-          ? 4 * percent * percent * percent 
-          : 1 - Math.pow(-2 * percent + 2, 3) / 2;
-
-        window.scrollTo(0, startY + difference * ease);
-
-        if (progress < duration) {
-          window.requestAnimationFrame(step);
-        } else {
-          if (callback) callback();
-        }
-      }
-
-      window.requestAnimationFrame(step);
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      // Cancelar el scroll abrupto nativo del navegador
-      e.preventDefault();
-
-      if (isAnimating) return;
-
-      const currentScroll = window.scrollY;
-      const direction = e.deltaY > 0 ? "down" : "up";
-
-      // Mapear elementos y sus posiciones
-      const sectionElements = sections
-        .map((id) => document.getElementById(id))
-        .filter((el): el is HTMLElement => el !== null);
-
-      if (sectionElements.length === 0) return;
-
-      // Calcular cuál es la sección que está más visible en pantalla actualmente
-      let currentIdx = 0;
-      let minDiff = Infinity;
-
-      sectionElements.forEach((el, idx) => {
-        const diff = Math.abs(el.offsetTop - currentScroll);
-        if (diff < minDiff) {
-          minDiff = diff;
-          currentIdx = idx;
-        }
-      });
-
-      // Calcular la sección destino
-      let targetIdx = currentIdx;
-      if (direction === "down" && currentIdx < sectionElements.length - 1) {
-        targetIdx = currentIdx + 1;
-      } else if (direction === "up" && currentIdx > 0) {
-        targetIdx = currentIdx - 1;
-      }
-
-      if (targetIdx !== currentIdx) {
-        const targetEl = sectionElements[targetIdx];
-        let targetY = targetEl.offsetTop;
-        
-        // Dejar espacio para la Navbar (80px) en secciones internas
-        if (targetEl.id !== "hero") {
-          targetY = targetY - 80;
-        }
-
-        isAnimating = true;
-        
-        // Transición lenta de 1.4 segundos: extremadamente fluida y relajada
-        smoothScrollTo(targetY, 1400, () => {
-          isAnimating = false;
-        });
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
     };
   }, []);
 
