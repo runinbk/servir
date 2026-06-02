@@ -1,0 +1,370 @@
+.aboutSection {
+  padding: 10rem 0;
+  background-color: var(--color-bg-base);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1.5px solid var(--color-border-subtle);
+}
+
+.contenedorFull {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 4%; /* Margen del 4% en los extremos para fluidez total */
+  margin: 0 auto;
+}
+
+/* ==========================================
+   BLOQUE 1: DECLARACIÓN DE MISIÓN ASIMÉTRICA
+   ========================================== */
+.misionBloque {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: flex-start;
+}
+
+.misionIzquierda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: sticky;
+  top: 120px;
+}
+
+.etiqueta {
+  display: inline-block;
+  font-family: var(--font-family-title);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-brand-accent);
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 1rem;
+  background-color: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 0px;
+}
+
+.tituloGigante {
+  font-family: var(--font-family-title);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  letter-spacing: -0.05em;
+}
+
+.misionDerecha {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 2.2rem;
+}
+
+.textoDestacado {
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.textoCuerpo {
+  font-size: 1.025rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.redBadge {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: 0px; /* Esquinas rectas brutalistas */
+  padding: 1.5rem 1.8rem;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.redBadge:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brand-accent);
+}
+
+.redBadgeEmoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.redBadgeTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.redBadgeTextos strong {
+  font-family: var(--font-family-title);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+}
+
+.redBadgeTextos span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================
+   BLOQUE 2: BENTO GRID DE PILARES FUNDAMENTALES
+   ========================================== */
+.pilaresBloque {
+  margin-top: 11rem;
+}
+
+.pilaresIntro {
+  margin-bottom: 3.5rem;
+}
+
+.tituloPilares {
+  font-family: var(--font-family-title);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  letter-spacing: -0.04em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.subtituloPilares {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  font-weight: 500;
+}
+
+.pilaresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.pilarCard {
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: 0px; /* Esquinas rectas perfectas */
+  padding: 2.8rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.pilarHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.pilarNumero {
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-size: 3.5rem;
+  line-height: 0.8;
+  color: var(--color-brand-accent);
+  transition: color var(--transition-smooth), transform var(--transition-smooth);
+  align-self: flex-start;
+}
+
+.pilarTitulo {
+  font-family: var(--font-family-title);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+  transition: color var(--transition-smooth);
+}
+
+.pilarDesc {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  transition: color var(--transition-smooth);
+}
+
+/* Interacción Bento Hover: Revela Fondo Oscuro de Marca y Letras Blancas */
+.pilarCard:hover {
+  background-color: var(--color-brand-primary-medium);
+  border-color: var(--color-brand-primary-medium);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pilarCard:hover .pilarNumero {
+  color: var(--color-brand-gold);
+  transform: scale(1.08) translateX(2px);
+}
+
+.pilarCard:hover .pilarTitulo {
+  color: #FFFFFF;
+}
+
+.pilarCard:hover .pilarDesc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================
+   BLOQUE 3: ALIANZAS ESTRATÉGICAS BRUTALISTAS
+   ========================================== */
+.alianzasBloque {
+  margin-top: 11rem;
+  border-top: 1.5px solid var(--color-border-subtle);
+  padding-top: 5rem;
+}
+
+.alianzasHeader {
+  margin-bottom: 3rem;
+}
+
+.etiquetaAlianza {
+  display: inline-block;
+  font-family: var(--font-family-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-brand-gold-dark);
+  margin-bottom: 0.8rem;
+  padding: 0.35rem 0.9rem;
+  background-color: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  border-radius: 0px;
+}
+
+.alianzasTitulo {
+  font-family: var(--font-family-title);
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+}
+
+.alianzasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.alianzaCard {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: 0px; /* Brutalismo */
+  padding: 1.4rem 1.8rem;
+  transition: all var(--transition-fast);
+}
+
+.alianzaCard:hover {
+  border-color: var(--color-brand-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.alianzaLogoBox {
+  font-family: var(--font-family-title);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-brand-primary);
+  background-color: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.alianzaInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.alianzaNombre {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+}
+
+.alianzaDesc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================
+   RESPONSIVIDAD Y ADAPTABILIDAD MULTIPANTALLA
+   ========================================== */
+@media (max-width: 1024px) {
+  .pilaresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .alianzasGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .aboutSection {
+    padding: 8rem 0;
+  }
+
+  .misionBloque {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .misionIzquierda {
+    position: static;
+  }
+
+  .misionDerecha {
+    padding-top: 0;
+  }
+
+  .pilaresBloque {
+    margin-top: 8rem;
+  }
+
+  .alianzasBloque {
+    margin-top: 8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .pilaresGrid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .alianzasGrid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  
+  .pilarCard {
+    padding: 2.2rem 1.8rem;
+  }
+
+  .redBadge {
+    padding: 1.2rem;
+    flex-direction: column;
+    text-align: center;
+  }
+}

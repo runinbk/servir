@@ -1,0 +1,260 @@
+.publicoSection {
+  position: relative;
+  min-height: 800px;
+  background-color: var(--color-bg-base);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid var(--color-border-subtle);
+}
+
+/* 1. IMAGEN DE FONDO A LA DERECHA CON TRANSICIÓN DE OPACIDAD */
+.imagenFondo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 62%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+/* 2. OVERLAY DE GRADIENTE EDITORIAL SUIZO */
+.gradienteOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #F5F6F4 0%, 
+    #F5F6F4 42%, 
+    rgba(245, 246, 244, 0.92) 52%, 
+    rgba(245, 246, 244, 0.2) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contenedorFull {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 4%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.publicoGrid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 720px;
+}
+
+/* 3. PANEL DE CONTROL (TARJETA BLANCA FLOTANTE) */
+.panelControl {
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: 0px; /* Esquinas rectas brutas */
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.panelControl:hover {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.panelHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.etiqueta {
+  display: inline-block;
+  font-family: var(--font-family-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-brand-gold-dark);
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.9rem;
+  background-color: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  border-radius: 0px;
+}
+
+.titulo {
+  font-family: var(--font-family-title);
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.8rem;
+}
+
+.descripcionBox {
+  border-left: 3px solid var(--color-brand-accent);
+  padding-left: 1rem;
+  margin-top: 0.6rem;
+}
+
+.descripcionText {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-weight: 500;
+  min-height: 110px; /* Altura mínima fija para evitar saltos al alternar */
+}
+
+/* 4. MENÚ DE NAVEGACIÓN VERTICAL */
+.menuVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.menuBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 1.2rem;
+  font-family: var(--font-family-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border-radius: 0px;
+  border-left: 3.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.menuBtnIcono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.menuBtnNombre {
+  transition: color var(--transition-fast);
+}
+
+.menuBtn:hover {
+  color: var(--color-brand-primary-medium);
+  background-color: rgba(18, 31, 23, 0.02);
+}
+
+.menuBtn:hover .menuBtnIcono {
+  color: var(--color-brand-primary-medium);
+  transform: scale(1.08);
+}
+
+/* Estado activo del elemento seleccionado en menú vertical */
+.menuBtnActivo {
+  color: var(--color-brand-primary-medium) !important;
+  background-color: rgba(18, 31, 23, 0.05) !important;
+  border-left-color: var(--color-brand-primary-medium) !important;
+  font-weight: 800 !important;
+}
+
+.menuBtnActivo .menuBtnIcono {
+  color: var(--color-brand-accent) !important;
+}
+
+.flechaActiva {
+  margin-left: auto;
+  color: var(--color-brand-primary-medium);
+  animation: slideRight 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.espacioVisual {
+  display: block;
+}
+
+/* ==========================================
+   RESPONSIVIDAD Y ADAPTABILIDAD MULTIPANTALLA
+   ========================================== */
+@media (max-width: 960px) {
+  .publicoSection {
+    min-height: auto;
+    padding: 6rem 0;
+  }
+
+  .imagenFondo {
+    width: 100%;
+    height: 380px;
+    position: relative;
+  }
+
+  .gradienteOverlay {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(180deg, 
+      rgba(245, 246, 244, 0.05) 0%, 
+      rgba(245, 246, 244, 0.95) 90%
+    );
+    z-index: 2;
+  }
+
+  .publicoGrid {
+    grid-template-columns: 1fr;
+    gap: 0rem;
+    min-height: auto;
+  }
+
+  .panelControl {
+    max-width: 100%;
+    margin-top: -120px; /* Superponer sobre la imagen */
+    position: relative;
+    z-index: 5;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .panelControl {
+    padding: 2.2rem 1.5rem;
+    margin-top: -80px;
+  }
+
+  .descripcionText {
+    min-height: 140px; /* Mayor altura en móviles para evitar cambios bruscos */
+  }
+
+  .imagenFondo {
+    height: 280px;
+  }
+
+  .gradienteOverlay {
+    height: 280px;
+  }
+}

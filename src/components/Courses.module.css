@@ -1,0 +1,423 @@
+.courses {
+  padding: 8rem 0;
+  background-color: var(--color-bg-surface);
+  position: relative;
+}
+
+/* Panel de Controles: Filtros y Buscador */
+.controlesBox {
+  background-color: var(--color-bg-base);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.controlesFilaSuperior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Pestañas Principales (Jóvenes vs Adultos) */
+.pestanasFlex {
+  display: flex;
+  gap: 0.8rem;
+  background-color: rgba(21, 128, 61, 0.05);
+  padding: 0.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(21, 128, 61, 0.08);
+}
+
+.pestanaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-text-secondary);
+}
+
+.pestanaBtn:hover {
+  color: var(--color-brand-primary-medium);
+}
+
+.pestanaActiva {
+  background-color: var(--color-brand-primary);
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Buscador Inteligente */
+.buscadorWrapper {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+  min-width: 260px;
+}
+
+.buscadorInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.8rem;
+  font-size: 0.95rem;
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.buscadorInput:focus {
+  border-color: var(--color-brand-accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  background-color: #FFFFFF;
+}
+
+.buscadorIcono {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* Sub-filtros por categorías específicas */
+.subfiltrosFlex {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  border-top: 1.5px solid var(--color-border-subtle);
+  padding-top: 1.2rem;
+}
+
+.subfiltroBtn {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border-subtle);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.subfiltroBtn:hover {
+  border-color: var(--color-brand-primary-medium);
+  color: var(--color-brand-primary-medium);
+}
+
+.subfiltroActivo {
+  background-color: var(--color-brand-primary-medium);
+  color: #FFFFFF !important;
+  border-color: transparent;
+}
+
+/* Banner de filtro de organización externo */
+.bannerFiltroOrg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  background-color: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--color-brand-gold-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.btnEliminarFiltro {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  color: var(--color-brand-gold-dark);
+  font-weight: 800;
+  transition: color var(--transition-fast);
+}
+
+.btnEliminarFiltro:hover {
+  color: #EF4444;
+}
+
+/* Rejilla de Tarjetas de Cursos */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.card {
+  background-color: var(--color-bg-base);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-bg-surface);
+}
+
+/* Cabecera visual de tarjeta de curso */
+.cardVisual {
+  position: relative;
+  height: 180px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-medium) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.placeholderImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.placeholderEmoji {
+  font-size: 3.5rem;
+  margin-bottom: 0.6rem;
+  transition: transform var(--transition-spring);
+}
+
+.card:hover .placeholderEmoji {
+  transform: scale(1.18) rotate(6deg);
+}
+
+.cardVisualPatron {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+/* Detalle de organización responsable */
+.orgTag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 5;
+}
+
+/* Cuerpo de la tarjeta */
+.cardCuerpo {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cursoNombre {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 3.25rem; /* Altura fija para alineación */
+}
+
+.cursoDesc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.2rem; /* Altura fija para alineación */
+  flex: 1;
+}
+
+/* Horarios e info práctica */
+.cursoInfoMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-top: 1.5px solid var(--color-border-subtle);
+  padding-top: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.metaIcono {
+  color: var(--color-brand-accent);
+  flex-shrink: 0;
+}
+
+/* Botón de inscripción */
+.btnInscribirse {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background-color: var(--color-brand-accent);
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 12px 0 rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.8rem;
+}
+
+.btnInscribirse:hover {
+  background-color: HSL(160, 84%, 32%);
+  box-shadow: 0 6px 16px 0 rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Enlace secundario de subruta */
+.linkDetalle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-brand-primary-medium);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+  padding: 0.4rem 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.linkDetalle:hover {
+  color: var(--color-brand-accent);
+  text-decoration: underline;
+}
+
+/* Estado Vacío (Sin resultados) */
+.sinResultados {
+  grid-column: span 3;
+  text-align: center;
+  padding: 5rem 2rem;
+  background-color: var(--color-bg-base);
+  border: 1.5px dashed var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sinResultadosIcono {
+  font-size: 3rem;
+}
+
+.sinResultadosTitulo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+}
+
+.sinResultadosDesc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  max-width: 400px;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .sinResultados {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .controlesFilaSuperior {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .buscadorWrapper {
+    max-width: 100%;
+  }
+  
+  .pestanasFlex {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sinResultados {
+    grid-column: span 1;
+  }
+  
+  .controlesBox {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,189 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all var(--transition-smooth);
+  padding: 1.5rem 0;
+}
+
+.navbarScrolled {
+  padding: 0.75rem 0;
+  background: rgba(18, 31, 23, 0.94); /* Gris verdoso muy oscuro translúcido premium */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4%; /* Padding fluido de ancho completo */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logoImg {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    height: 32px;
+  }
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.enlace {
+  font-family: var(--font-family-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: rgba(255, 255, 255, 0.82); /* Texto claro para sobresalir en Hero y barra oscura */
+  transition: all var(--transition-fast);
+  padding: 0.5rem 0.25rem;
+  position: relative;
+}
+
+.enlace::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-brand-gold); /* Subrayado en oro */
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-fast);
+}
+
+.enlace:hover {
+  color: #FFFFFF;
+}
+
+.enlace:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.enlaceActivo {
+  color: var(--color-brand-gold) !important;
+  font-weight: 800;
+}
+
+.enlaceActivo::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.cta {
+  background-color: #FFFFFF;
+  color: var(--color-text-primary) !important;
+  font-weight: 800;
+  font-family: var(--font-family-title);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.75rem;
+  border-radius: var(--radius-full) !important;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid #FFFFFF;
+  transition: all var(--transition-smooth);
+}
+
+.cta:hover {
+  background-color: transparent;
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.cta::after {
+  display: none;
+}
+
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburguesa span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background-color: #FFFFFF; /* Hamburguesa blanca para Hero oscuro */
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+/* Animaciones de Hamburguesa Activa */
+.hamburguesaActiva span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburguesaActiva span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburguesaActiva span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Responsividad para móviles y tablets */
+@media (max-width: 900px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 290px;
+    height: 100vh;
+    background-color: rgba(18, 31, 23, 0.98); /* Cajón móvil oscuro coincidente */
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 3rem;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform var(--transition-smooth);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .menuAbierto {
+    transform: translateX(0);
+  }
+
+  .hamburguesa {
+    display: flex;
+  }
+}

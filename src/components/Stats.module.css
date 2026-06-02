@@ -1,0 +1,131 @@
+.statsSection {
+  padding: 8rem 0;
+  background-color: var(--color-bg-base);
+  position: relative;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 6rem;
+}
+
+/* Columna Izquierda: Mensaje de Impacto Minimalista */
+.colTexto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.subtitulo {
+  font-family: var(--font-family-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brand-primary);
+}
+
+.textoImpacto {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.textoImpacto strong {
+  color: var(--color-brand-primary-medium);
+  font-weight: 800;
+}
+
+/* Columna Derecha: Bloques de Números Gigantes (Brutalismo tipográfico) */
+.colNumeros {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.numBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  border-bottom: 1.5px solid var(--color-border-subtle);
+  padding-bottom: 1.5rem;
+}
+
+.numGigante {
+  font-family: var(--font-family-title);
+  font-size: clamp(4.5rem, 9vw, 6.5rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  min-width: 140px;
+}
+
+.numMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.numLabel {
+  font-family: var(--font-family-title);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+.numDesc {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* Responsividad */
+@media (max-width: 960px) {
+  .statsSection {
+    padding: 6rem 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 4.5rem;
+  }
+  
+  .colTexto {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .colNumeros {
+    gap: 2.5rem;
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .numBlock {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .numBlock {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem;
+    padding-bottom: 2rem;
+  }
+  
+  .numGigante {
+    min-width: auto;
+  }
+}

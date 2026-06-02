@@ -1,0 +1,240 @@
+.network {
+  padding: 8rem 0;
+  background-color: var(--color-bg-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cúspide del Organigrama */
+.cuspide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.nodoServir {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem 2.8rem;
+  background-color: var(--color-brand-primary-medium);
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform var(--transition-smooth);
+}
+
+.nodoServir:hover {
+  transform: scale(1.02);
+}
+
+.servirNombre {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.servirDesc {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+/* Líneas conectoras */
+.conectorVertical {
+  width: 2px;
+  height: 40px;
+  background-color: var(--color-brand-primary);
+  margin: 0 auto;
+  opacity: 0.35;
+}
+
+.conectorHorizontalContainer {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  height: 2px;
+  background-color: var(--color-brand-primary);
+  opacity: 0.35;
+}
+
+.conectorExtremo {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 40px;
+  background-color: var(--color-brand-primary);
+}
+
+.extremoIzquierdo {
+  left: 0;
+}
+
+.extremoDerecho {
+  right: 0;
+}
+
+/* Divisiones Principales */
+.divisionesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.divisionCard {
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.divisionCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brand-primary);
+}
+
+.divisionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--color-border-subtle);
+  padding-bottom: 1.2rem;
+}
+
+.divisionTituloBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.divisionTitulo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-brand-primary-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.divisionMeta {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.divisionToggleIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(21, 128, 61, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+  transition: all var(--transition-smooth);
+  border: 1px solid rgba(21, 128, 61, 0.1);
+  flex-shrink: 0;
+}
+
+.divisionActiva .divisionToggleIcon {
+  transform: rotate(180deg);
+  background-color: var(--color-brand-primary);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.divisionCuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.subgrupoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.subgrupoTitulo {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  border-left: 3px solid var(--color-brand-accent);
+  padding-left: 0.6rem;
+}
+
+.chipsFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chipOrganizacion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chipOrganizacion:hover {
+  transform: scale(1.04) translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  filter: brightness(1.08);
+}
+
+.guiaInteractiva {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-brand-gold-dark);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+  .divisionesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .conectorHorizontalContainer, .conectorExtremo {
+    display: none; /* Simplificar líneas en móvil */
+  }
+  
+  .conectorVertical {
+    height: 25px;
+  }
+}
