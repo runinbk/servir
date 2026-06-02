@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { CURSOS } from "../data/cursos";
 import { Curso } from "../types";
-import { Search, Calendar, Clock, ArrowRight, BookOpen, AlertCircle } from "lucide-react";
+import { Search, ArrowUpRight, AlertCircle, RefreshCw } from "lucide-react";
 import styles from "./Courses.module.css";
 
 interface CoursesProps {
@@ -29,21 +29,21 @@ export default function Courses({
   const [subCategoria, setSubCategoria] = useState<string>("todas");
   const [busqueda, setBusqueda] = useState<string>("");
 
-  // Definir subcategorías dinámicas según la pestaña principal
+  // Subcategorías minimalistas (chips ovalados planos sin emojis)
   const subCategorias = useMemo<CategoriaFiltro[]>(() => {
     if (tab === "jovenes") {
       return [
-        { key: "todas", label: "🌱 Todos los Jóvenes" },
-        { key: "adolescentes", label: "👦 Adolescentes" },
-        { key: "jovenes", label: "🧑 Jóvenes" },
-        { key: "jovenesAdultos", label: "🧑‍💼 Jóvenes Adultos" },
+        { key: "todas", label: "Todos los Jóvenes" },
+        { key: "adolescentes", label: "Adolescentes" },
+        { key: "jovenes", label: "Jóvenes" },
+        { key: "jovenesAdultos", label: "Jóvenes Adultos" },
       ];
     } else {
       return [
-        { key: "todas", label: "🌳 Todos los Adultos" },
-        { key: "mujeres", label: "👩 Mujeres" },
-        { key: "hombres", label: "👨 Hombres" },
-        { key: "profesionales", label: "💼 Profesionales" },
+        { key: "todas", label: "Todos los Adultos" },
+        { key: "mujeres", label: "Mujeres" },
+        { key: "hombres", label: "Hombres" },
+        { key: "profesionales", label: "Profesionales" },
       ];
     }
   }, [tab]);
@@ -84,56 +84,55 @@ export default function Courses({
     });
   }, [selectedOrganizacion, tab, subCategoria, busqueda]);
 
-  const handleInscribirseClick = (curso: Curso) => {
-    onSelectCurso(curso);
-  };
-
   return (
-    <section id="cursos" className={styles.courses}>
-      <div className="contenedor">
-        <div className="texto-centro">
-          <span className="etiqueta-seccion">Catálogo Educativo</span>
-          <h2 className="seccion-titulo">Nuestros Cursos Gratuitos</h2>
-          <p className="seccion-subtitulo">
-            Elige el programa que se adapta a tu etapa de vida. Desarrolla tus habilidades, fortalece tu liderazgo y construye tu futuro. Todo es 100% gratuito.
+    <section id="cursos" className={styles.coursesSection}>
+      <div className={styles.contenedorFull}>
+        
+        {/* ENCABEZADO DE SECCIÓN */}
+        <div className={styles.header}>
+          <span className={styles.etiqueta}>Catálogo Educativo</span>
+          <h2 className={styles.titulo}>Nuestros Cursos Gratuitos</h2>
+          <p className={styles.subtitulo}>
+            Elige el programa que se adapta a tu etapa de vida. Desarrolla tus habilidades, fortalece tu liderazgo y construye tu futuro de manera <span className="acento-italico">100% gratuita</span>.
           </p>
         </div>
 
-        {/* PANEL DE FILTROS & BUSCADOR */}
-        <div className={styles.controlesBox}>
-          
-          <div className={styles.controlesFilaSuperior}>
-            {/* Pestañas Principales */}
-            <div className={styles.pestanasFlex}>
+        {/* CONTROLES DE BÚSQUEDA Y FILTRADO ULTRA MINIMALISTAS */}
+        <div className={styles.controles}>
+          <div className={styles.controlesFila}>
+            
+            {/* Pestañas Principales (Chips en caja blanca) */}
+            <div className={styles.pestanasBox}>
               <button
                 className={`${styles.pestanaBtn} ${tab === "jovenes" ? styles.pestanaActiva : ""}`}
                 onClick={() => setTab("jovenes")}
               >
-                🌱 Si eres Joven...
+                Jóvenes
               </button>
               <button
                 className={`${styles.pestanaBtn} ${tab === "adultos" ? styles.pestanaActiva : ""}`}
                 onClick={() => setTab("adultos")}
               >
-                🌳 Si eres Adulto...
+                Adultos
               </button>
             </div>
 
-            {/* Buscador inteligente */}
-            <div className={styles.buscadorWrapper}>
-              <Search className={styles.buscadorIcono} size={18} />
+            {/* Buscador minimalista de línea fina */}
+            <div className={styles.buscador}>
+              <Search className={styles.buscadorIcono} size={16} />
               <input
                 type="text"
                 className={styles.buscadorInput}
-                placeholder="Busca por curso, descripción o red aliada..."
+                placeholder="Buscar programas..."
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
               />
             </div>
+
           </div>
 
-          {/* Sub-filtros por categorías específicas */}
-          <div className={styles.subfiltrosFlex}>
+          {/* Subfiltros en chips ovalados planos */}
+          <div className={styles.subfiltros}>
             {subCategorias.map((cat) => (
               <button
                 key={cat.key}
@@ -144,80 +143,63 @@ export default function Courses({
               </button>
             ))}
 
-            {/* Banner indicador de filtro por organigrama externo */}
+            {/* Indicador de filtro externo */}
             {selectedOrganizacion && (
-              <div className={styles.bannerFiltroOrg}>
-                <span>Filtrado por: <strong>{selectedOrganizacion}</strong></span>
+              <div className={styles.filtroExternoBadge}>
+                <span>Red: <strong>{selectedOrganizacion}</strong></span>
                 <button 
                   onClick={onClearOrganizacion} 
-                  className={styles.btnEliminarFiltro}
-                  title="Eliminar filtro de organización"
+                  className={styles.clearFiltroBtn}
+                  title="Quitar filtro de red"
                 >
                   ✕
                 </button>
               </div>
             )}
           </div>
-
         </div>
 
-        {/* GRID DE TARJETAS DE CURSOS */}
-        <div className={styles.grid}>
+        {/* LISTA HORIZONTAL MINIMALISTA EDITORIAL (ESTILO WHOSANGELFLORES) */}
+        <div className={styles.listaCursos}>
           {cursosFiltrados.length > 0 ? (
             cursosFiltrados.map((curso) => (
-              <article key={curso.id} className={styles.card}>
+              <article key={curso.id} className={styles.filaCurso}>
                 
-                {/* Cabecera Visual (Con Placeholder Vectorial Premium) */}
-                <div className={styles.cardVisual}>
-                  <div className={styles.cardVisualPatron}></div>
-                  <span 
-                    className={styles.orgTag} 
-                    style={{ backgroundColor: curso.colorOrg }}
-                  >
-                    {curso.emoji} {curso.organizacion}
-                  </span>
-                  
-                  <div className={styles.placeholderImg}>
-                    <span className={styles.placeholderEmoji}>{curso.emoji}</span>
-                  </div>
+                {/* Columna 1: Nombre de la Organización/Programa (Título principal grande estilo Angel Flores) */}
+                <div className={styles.colOrganizacion}>
+                  <h3 className={styles.orgNombre}>{curso.organizacion}</h3>
                 </div>
 
-                {/* Cuerpo de la Tarjeta */}
-                <div className={styles.cardCuerpo}>
-                  <h3 className={styles.cursoNombre} title={curso.nombre}>
-                    {curso.nombre}
-                  </h3>
+                {/* Columna 2: Nombre del Curso & Descripción (Bloque de texto explicativo a la derecha) */}
+                <div className={styles.colInformacion}>
+                  <h4 className={styles.cursoNombre}>{curso.nombre}</h4>
+                  <p className={styles.cursoDescripcion}>{curso.descripcion}</p>
+                </div>
+
+                {/* Columna 3: Información de Horarios (Chips ovalados finos) */}
+                <div className={styles.colMetadatos}>
+                  <span className={styles.chipMeta}>{curso.dias}</span>
+                  <span className={styles.chipMeta}>{curso.horario}</span>
+                </div>
+
+                {/* Columna 4: Enlaces y Acciones Minimalistas (Flecha Inclinada ↗) */}
+                <div className={styles.colAcciones}>
                   
-                  <p className={styles.cursoDesc}>
-                    {curso.descripcion}
-                  </p>
-
-                  {/* Horarios e Info Práctica */}
-                  <div className={styles.cursoInfoMeta}>
-                    <div className={styles.metaItem}>
-                      <Calendar className={styles.metaIcono} size={15} />
-                      <span>{curso.dias}</span>
-                    </div>
-                    <div className={styles.metaItem}>
-                      <Clock className={styles.metaIcono} size={15} />
-                      <span>{curso.horario}</span>
-                    </div>
-                  </div>
-
-                  {/* Botón de inscripción gratuito */}
+                  {/* Botón de inscripción rápida: Abre Modal */}
                   <button 
-                    onClick={() => handleInscribirseClick(curso)}
-                    className={styles.btnInscribirse}
+                    onClick={() => onSelectCurso(curso)}
+                    className={styles.btnInscripcionRapida}
+                    title="Inscribirse Gratis al Curso"
+                    aria-label={`Inscribirse al curso ${curso.nombre}`}
                   >
-                    <BookOpen size={16} />
-                    <span>Inscribirse Gratis</span>
-                    <ArrowRight size={14} style={{ marginLeft: "auto" }} />
+                    <ArrowUpRight className={styles.flechaDiagonal} size={22} />
                   </button>
 
-                  {/* Enlace de navegación real a subrutas de curso */}
-                  <Link href={`/cursos/${curso.id}`} className={styles.linkDetalle}>
-                    Ver programa detallado →
+                  {/* Enlace sutil al programa detallado */}
+                  <Link href={`/cursos/${curso.id}`} className={styles.enlacePrograma}>
+                    Ver programa →
                   </Link>
+
                 </div>
 
               </article>
@@ -225,10 +207,10 @@ export default function Courses({
           ) : (
             /* ESTADO VACÍO (SIN RESULTADOS) */
             <div className={styles.sinResultados}>
-              <AlertCircle className={styles.sinResultadosIcono} size={48} style={{ color: "var(--color-brand-gold-dark)" }} />
+              <AlertCircle className={styles.sinResultadosIcono} size={38} />
               <h3 className={styles.sinResultadosTitulo}>No se encontraron programas</h3>
               <p className={styles.sinResultadosDesc}>
-                No pudimos encontrar cursos que coincidan con los filtros o la búsqueda ingresada. Intenta borrar el buscador o seleccionar otra categoría.
+                Prueba borrando los términos de búsqueda o restableciendo los filtros de categoría.
               </p>
               <button 
                 onClick={() => {
@@ -236,10 +218,10 @@ export default function Courses({
                   setSubCategoria("todas");
                   onClearOrganizacion();
                 }}
-                className="btn btn-primario"
-                style={{ padding: "0.5rem 1.2rem", fontSize: "0.85rem", marginTop: "0.5rem" }}
+                className={styles.btnReset}
               >
-                Restablecer filtros
+                <RefreshCw size={14} />
+                <span>Restablecer Catálogo</span>
               </button>
             </div>
           )}

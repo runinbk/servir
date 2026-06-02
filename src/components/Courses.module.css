@@ -1,423 +1,533 @@
-.courses {
+/* ============================================================
+   SERVIR — Estilos del Catálogo Educativo (Listado Minimalista)
+   Archivo: src/components/Courses.module.css
+   ============================================================ */
+
+.coursesSection {
   padding: 8rem 0;
-  background-color: var(--color-bg-surface);
+  background-color: var(--color-bg-base);
   position: relative;
+  width: 100%;
 }
 
-/* Panel de Controles: Filtros y Buscador */
-.controlesBox {
-  background-color: var(--color-bg-base);
-  border: 1.5px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 3.5rem;
+.contenedorFull {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 5%;
+}
+
+/* 1. ENCABEZADO DE SECCIÓN (Estilo Editorial) */
+.header {
+  margin-bottom: 4.5rem;
+  text-align: left; /* Asimetría elegante en lugar de centrado clásico */
+  max-width: 800px;
+}
+
+.etiqueta {
+  display: inline-block;
+  font-family: var(--font-family-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-brand-primary);
+  margin-bottom: 1.2rem;
+  padding: 0.35rem 0.9rem;
+  background-color: rgba(21, 128, 61, 0.05);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 9999px; /* Chip ovalado minimalista */
+}
+
+.titulo {
+  font-family: var(--font-family-title);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+}
+
+.subtitulo {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+/* 2. CONTROLES DE FILTRADO (Flat y Ultra Clean) */
+.controles {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.8rem;
+  margin-bottom: 4rem;
+  border-bottom: 1.5px solid var(--color-border-subtle);
+  padding-bottom: 2rem;
 }
 
-.controlesFilaSuperior {
+.controlesFila {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
-/* Pestañas Principales (Jóvenes vs Adultos) */
-.pestanasFlex {
+/* Pestañas Principales en Caja Blanca */
+.pestanasBox {
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  padding: 0.35rem;
+  border-radius: 9999px; /* Totalmente ovalado */
   display: flex;
-  gap: 0.8rem;
-  background-color: rgba(21, 128, 61, 0.05);
-  padding: 0.4rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(21, 128, 61, 0.08);
-}
-
-.pestanaBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  color: var(--color-text-secondary);
-}
-
-.pestanaBtn:hover {
-  color: var(--color-brand-primary-medium);
-}
-
-.pestanaActiva {
-  background-color: var(--color-brand-primary);
-  color: #FFFFFF !important;
+  gap: 0.3rem;
   box-shadow: var(--shadow-sm);
 }
 
-/* Buscador Inteligente */
-.buscadorWrapper {
+.pestanaBtn {
+  font-family: var(--font-family-title);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pestanaBtn:hover {
+  color: var(--color-brand-primary);
+  background-color: rgba(18, 31, 23, 0.03);
+}
+
+.pestanaActiva {
+  background-color: var(--color-text-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 10px rgba(17, 30, 22, 0.15);
+}
+
+/* Buscador Minimalista de Línea Fina */
+.buscador {
   position: relative;
   flex: 1;
-  max-width: 420px;
-  min-width: 260px;
-}
-
-.buscadorInput {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.8rem;
-  font-size: 0.95rem;
-  background-color: var(--color-bg-surface);
-  border: 1.5px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--color-text-primary);
-  transition: all var(--transition-fast);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
-}
-
-.buscadorInput:focus {
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
-  background-color: #FFFFFF;
+  max-width: 400px;
+  min-width: 280px;
 }
 
 .buscadorIcono {
   position: absolute;
-  left: 1rem;
+  left: 1.1rem;
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-text-muted);
   pointer-events: none;
-}
-
-/* Sub-filtros por categorías específicas */
-.subfiltrosFlex {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  border-top: 1.5px solid var(--color-border-subtle);
-  padding-top: 1.2rem;
-}
-
-.subfiltroBtn {
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.45rem 1.1rem;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--color-border-subtle);
-  background-color: var(--color-bg-surface);
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.subfiltroBtn:hover {
-  border-color: var(--color-brand-primary-medium);
-  color: var(--color-brand-primary-medium);
-}
-
-.subfiltroActivo {
-  background-color: var(--color-brand-primary-medium);
-  color: #FFFFFF !important;
-  border-color: transparent;
-}
-
-/* Banner de filtro de organización externo */
-.bannerFiltroOrg {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 1.2rem;
-  background-color: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  border-radius: var(--radius-md);
-  color: var(--color-brand-gold-dark);
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.btnEliminarFiltro {
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 0 0.2rem;
-  color: var(--color-brand-gold-dark);
-  font-weight: 800;
   transition: color var(--transition-fast);
 }
 
-.btnEliminarFiltro:hover {
+.buscadorInput {
+  width: 100%;
+  padding: 0.8rem 1.2rem 0.8rem 2.8rem;
+  font-size: 0.95rem;
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: 9999px;
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.buscadorInput:focus {
+  border-color: var(--color-text-primary);
+  box-shadow: 0 0 0 3px rgba(17, 30, 22, 0.08);
+}
+
+.buscadorInput:focus + .buscadorIcono {
+  color: var(--color-text-primary);
+}
+
+/* Subfiltros (Chips Ovalados de Línea) */
+.subfiltros {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.subfiltroBtn {
+  font-family: var(--font-family-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.45rem 1.2rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--color-border-subtle);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.subfiltroBtn:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.subfiltroActivo {
+  background-color: var(--color-brand-primary);
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 6px rgba(21, 128, 61, 0.15);
+}
+
+/* Filtro Externo Activo Badge */
+.filtroExternoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: rgba(245, 158, 11, 0.08);
+  border: 1px dashed var(--color-brand-gold-dark);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: var(--color-brand-gold-dark);
+}
+
+.filtroExternoBadge strong {
+  color: var(--color-text-primary);
+}
+
+.clearFiltroBtn {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-brand-gold-dark);
+  transition: color var(--transition-fast);
+  padding: 0 0.1rem;
+}
+
+.clearFiltroBtn:hover {
   color: #EF4444;
 }
 
-/* Rejilla de Tarjetas de Cursos */
-.grid {
+/* 3. LISTADO HORIZONTAL BRUTALISTA EDITORIAL (Estilo Angel Flores) */
+.listaCursos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filaCurso {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.card {
-  background-color: var(--color-bg-base);
-  border: 1.5px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  grid-template-columns: 25% 43% 18% 14%;
+  align-items: center;
+  padding: 2.5rem 1rem;
+  border-bottom: 1.5px solid rgba(18, 31, 23, 0.08);
+  position: relative;
   transition: all var(--transition-smooth);
+  background-color: transparent;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-brand-primary);
-  background-color: var(--color-bg-surface);
-}
-
-/* Cabecera visual de tarjeta de curso */
-.cardVisual {
-  position: relative;
-  height: 180px;
-  width: 100%;
-  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-medium) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.placeholderImg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  text-align: center;
-  padding: 2rem;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-}
-
-.placeholderEmoji {
-  font-size: 3.5rem;
-  margin-bottom: 0.6rem;
-  transition: transform var(--transition-spring);
-}
-
-.card:hover .placeholderEmoji {
-  transform: scale(1.18) rotate(6deg);
-}
-
-.cardVisualPatron {
+/* Separador elegante lateral al hacer hover */
+.filaCurso::before {
+  content: "";
   position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
-  background-size: 16px 16px;
-  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--color-brand-accent);
+  transform: scaleY(0);
+  transition: transform var(--transition-smooth);
+  transform-origin: center;
 }
 
-/* Detalle de organización responsable */
-.orgTag {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  display: inline-flex;
+.filaCurso:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: translateX(8px);
+  padding-left: 1.5rem;
+}
+
+.filaCurso:hover::before {
+  transform: scaleY(1);
+}
+
+/* Columna 1: Organización/Programa como título principal */
+.colOrganizacion {
+  display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  z-index: 5;
+  padding-right: 2rem;
 }
 
-/* Cuerpo de la tarjeta */
-.cardCuerpo {
-  padding: 1.8rem;
+.orgNombre {
+  font-family: var(--font-family-title);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  transition: color var(--transition-smooth);
+}
+
+.filaCurso:hover .orgNombre {
+  color: var(--color-brand-primary);
+}
+
+/* Columna 2: Nombre y Descripción (Peso tipográfico secundario) */
+.colInformacion {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 0.4rem;
+  padding-right: 2.5rem;
 }
 
 .cursoNombre {
-  font-size: 1.25rem;
+  font-family: var(--font-family-title);
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--color-brand-primary-medium);
+  color: var(--color-text-primary);
   line-height: 1.3;
-  margin-bottom: 0.8rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  height: 3.25rem; /* Altura fija para alineación */
+  letter-spacing: -0.01em;
+  transition: color var(--transition-fast);
 }
 
-.cursoDesc {
-  font-size: 0.9rem;
+.filaCurso:hover .cursoNombre {
+  color: var(--color-brand-primary-medium);
+}
+
+.cursoDescripcion {
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  line-height: 1.55;
-  margin-bottom: 1.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  height: 4.2rem; /* Altura fija para alineación */
-  flex: 1;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
-/* Horarios e info práctica */
-.cursoInfoMeta {
+/* Columna 3: Metadatos de Horarios */
+.colMetadatos {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  border-top: 1.5px solid var(--color-border-subtle);
-  padding-top: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.metaItem {
-  display: flex;
-  align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-  font-weight: 600;
+  align-items: flex-start;
+  padding-right: 1rem;
 }
 
-.metaIcono {
-  color: var(--color-brand-accent);
-  flex-shrink: 0;
-}
-
-/* Botón de inscripción */
-.btnInscribirse {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  background-color: var(--color-brand-accent);
-  color: #FFFFFF;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-smooth);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  box-shadow: 0 4px 12px 0 rgba(16, 185, 129, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 0.8rem;
-}
-
-.btnInscribirse:hover {
-  background-color: HSL(160, 84%, 32%);
-  box-shadow: 0 6px 16px 0 rgba(16, 185, 129, 0.3);
-  transform: translateY(-1px);
-}
-
-/* Enlace secundario de subruta */
-.linkDetalle {
+.chipMeta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
+  font-family: var(--font-family-title);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--color-brand-primary-medium);
-  transition: color var(--transition-fast), padding-left var(--transition-fast);
-  padding: 0.4rem 0;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 0.35rem 0.9rem;
+  background-color: rgba(18, 31, 23, 0.04);
+  border-radius: 9999px;
+  border: 1px solid rgba(18, 31, 23, 0.03);
 }
 
-.linkDetalle:hover {
-  color: var(--color-brand-accent);
+/* Columna 4: Acciones (Flecha Diagonal y Enlace) */
+.colAcciones {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+/* Botón Circular ↗ */
+.btnInscripcionRapida {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+}
+
+.flechaDiagonal {
+  transition: transform var(--transition-smooth);
+}
+
+.btnInscripcionRapida:hover {
+  background-color: var(--color-text-primary);
+  color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(17, 30, 22, 0.2);
+}
+
+/* Rotación y desplazamiento de la flecha al hacer hover en la fila */
+.filaCurso:hover .flechaDiagonal {
+  transform: translate(3px, -3px) rotate(0deg);
+}
+
+.enlacePrograma {
+  font-family: var(--font-family-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.enlacePrograma:hover {
+  color: var(--color-brand-primary);
   text-decoration: underline;
 }
 
-/* Estado Vacío (Sin resultados) */
+/* 4. ESTADO VACÍO (Estilo Minimalista Plano) */
 .sinResultados {
-  grid-column: span 3;
   text-align: center;
-  padding: 5rem 2rem;
-  background-color: var(--color-bg-base);
+  padding: 6rem 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
   border: 1.5px dashed var(--color-border-subtle);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
 }
 
 .sinResultadosIcono {
-  font-size: 3rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
 }
 
 .sinResultadosTitulo {
-  font-size: 1.25rem;
+  font-family: var(--font-family-title);
+  font-size: 1.5rem;
   font-weight: 800;
-  color: var(--color-brand-primary-medium);
+  color: var(--color-text-primary);
 }
 
 .sinResultadosDesc {
   font-size: 0.95rem;
   color: var(--color-text-secondary);
-  max-width: 400px;
+  max-width: 440px;
+  line-height: 1.6;
 }
 
-/* Responsividad */
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
+.btnReset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background-color: var(--color-text-primary);
+  color: #FFFFFF;
+  font-family: var(--font-family-title);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-smooth);
+  margin-top: 0.5rem;
+}
+
+.btnReset:hover {
+  background-color: var(--color-brand-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(21, 128, 61, 0.25);
+}
+
+.btnReset svg {
+  transition: transform var(--transition-smooth);
+}
+
+.btnReset:hover svg {
+  transform: rotate(180deg);
+}
+
+/* ============================================================
+   5. RESPONSIVIDAD (Ajustes adaptativos fluidos)
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .filaCurso {
+    grid-template-columns: 26% 42% 18% 14%;
   }
-  
-  .sinResultados {
-    grid-column: span 2;
+}
+
+@media (max-width: 992px) {
+  .filaCurso {
+    grid-template-columns: 1fr;
+    grid-gap: 1.2rem;
+    padding: 2.2rem 1.2rem;
+    align-items: flex-start;
+  }
+
+  .filaCurso:hover {
+    transform: translateX(4px);
+  }
+
+  .colOrganizacion {
+    padding-right: 0;
+  }
+
+  .colInformacion {
+    padding-right: 0;
+  }
+
+  .colMetadatos {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-right: 0;
+  }
+
+  .colAcciones {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid rgba(18, 31, 23, 0.06);
+    padding-top: 1.2rem;
+    margin-top: 0.4rem;
+  }
+
+  .btnInscripcionRapida {
+    width: 42px;
+    height: 42px;
   }
 }
 
 @media (max-width: 768px) {
-  .controlesFilaSuperior {
+  .coursesSection {
+    padding: 5rem 0;
+  }
+
+  .controlesFila {
     flex-direction: column;
     align-items: stretch;
+    gap: 1.2rem;
   }
-  
-  .buscadorWrapper {
+
+  .buscador {
     max-width: 100%;
+    min-width: 100%;
   }
-  
-  .pestanasFlex {
+
+  .pestanasBox {
+    width: 100%;
     justify-content: center;
   }
-}
 
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .pestanaBtn {
+    flex: 1;
+    justify-content: center;
   }
-  
-  .sinResultados {
-    grid-column: span 1;
-  }
-  
-  .controlesBox {
-    padding: 1.5rem;
+
+  .filaCurso {
+    padding: 1.8rem 0.8rem;
   }
 }
