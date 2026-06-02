@@ -240,3 +240,25 @@ a {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* 6. SISTEMA DE SCROLL SNAPPING EDITORIAL (SÓLO ESCRITORIO) */
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  #hero, 
+  #estadisticas-impacto, 
+  #publico {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #sobre-nosotros,
+  #cursos,
+  #contacto {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}

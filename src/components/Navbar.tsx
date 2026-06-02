@@ -8,6 +8,8 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [showNavbar, setShowNavbar] = useState<boolean>(true);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
 
   // Secciones a espiar en la Home
   const secciones = ["hero", "sobre-nosotros", "publico", "nuestra-red", "cursos"];
@@ -15,18 +17,30 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      const currentScrollY = window.scrollY;
+
+      // Color de fondo scrolled
+      if (currentScrollY > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+
+      // Ocultar / Mostrar Navbar al scroll (Ocultar al bajar, revelar al subir)
+      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -52,7 +66,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ""}`}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ""} ${!showNavbar ? styles.navbarHidden : ""}`}>
       <div className={styles.contenedor}>
         {/* LOGO INSTITUCIONAL */}
         <a href="#hero" onClick={(e) => handleEnlaceClick(e, "hero")} className={styles.logo} aria-label="Volver al inicio">

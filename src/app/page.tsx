@@ -19,13 +19,22 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedCurso, setSelectedCurso] = useState<Curso | null>(null);
   const [loadingPage, setLoadingPage] = useState<boolean>(true);
+  const [isFading, setIsFading] = useState<boolean>(false);
 
-  // Preloader suave de 1.1s para permitir montaje de activos e imágenes
+  // Preloader suave de 1.0s + 0.8s de desvanecimiento (fade-out)
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const fadeTimer = setTimeout(() => {
+      setIsFading(true);
+    }, 1000);
+
+    const unmountTimer = setTimeout(() => {
       setLoadingPage(false);
-    }, 1100);
-    return () => clearTimeout(timer);
+    }, 1800);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(unmountTimer);
+    };
   }, []);
 
   // Callback del organigrama para filtrar cursos
@@ -82,6 +91,9 @@ export default function Home() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            transition: "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            opacity: isFading ? 0 : 1,
+            pointerEvents: isFading ? "none" : "auto",
           }}
         >
           <div 
@@ -89,7 +101,9 @@ export default function Home() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "1.5rem"
+              gap: "1.5rem",
+              transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              transform: isFading ? "scale(0.92) translateY(-10px)" : "scale(1) translateY(0)",
             }}
           >
             <img 

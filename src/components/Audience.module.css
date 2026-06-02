@@ -8,6 +8,13 @@
   border-bottom: 1.5px solid var(--color-border-subtle);
 }
 
+@media (min-width: 992px) {
+  .publicoSection {
+    height: 100vh;
+    min-height: 100vh;
+  }
+}
+
 /* 1. IMAGEN DE FONDO A LA DERECHA CON TRANSICIÓN DE OPACIDAD */
 .imagenFondo {
   position: absolute;
